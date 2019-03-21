@@ -99,7 +99,7 @@ class App extends Component {
                 >
                     <img
                         alt = { device.identity }
-                        src = { `http://avatars.stendahls.net/avatar/${ crypto.createHash( 'md5' ).update( `${ device.identity }@stendahls.se` ).digest( 'hex' ) }` }
+                        src = { `https://avatars.stendahls.net/avatar/${ crypto.createHash( 'md5' ).update( `${ device.identity }@stendahls.se` ).digest( 'hex' ) }` }
                     />
                     <div
                         className = { 'location-wrapper' }
