@@ -27,7 +27,7 @@ class App extends Component {
     }
 
     updateData () {
-        fetch( `http://${ UNICATOR_HOST }/graphql`, {
+        fetch( `https://${ UNICATOR_HOST }/graphql`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify( { query: `{
