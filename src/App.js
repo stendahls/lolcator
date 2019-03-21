@@ -3,7 +3,7 @@ import crypto from 'crypto';
 import TimeAgo from 'react-timeago';
 import './App.css';
 
-const UNICATOR_HOST = '172.20.30.31';
+const UNICATOR_HOST = 'unicator.stendahls.se';
 // const UNICATOR_HOST = 'localhost:4000';
 
 
