@@ -52,6 +52,11 @@ header input {
     top: -7px;
 }
 
+.App {
+    background: url(flamedivider.gif) repeat-x;
+    background-position: bottom;
+}
+
 .devices-wrapper {
     display: flex;
     flex-wrap: wrap;
