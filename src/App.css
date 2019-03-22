@@ -57,7 +57,7 @@ header input {
     top: -7px;
 }
 
-.App {
+.App.loaded {
     background: url(flamedivider.gif) repeat-x;
     background-position: bottom;
 }

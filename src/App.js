@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import crypto from 'crypto';
 import TimeAgo from 'react-timeago';
 import './App.css';
+import loading from './loading.gif';
 
 const UNICATOR_HOST = 'unicator.stendahls.se';
 // const UNICATOR_HOST = 'localhost:4000';
@@ -64,7 +65,9 @@ class App extends Component {
 
             newState.uniqueUsers = [ ...new Set( logins ) ].length;
 
-            this.setState( newState )
+            this.setState( newState );
+
+            document.querySelector( '.App' ).classList.add( 'loaded' );
         } );
     }
 
@@ -77,6 +80,13 @@ class App extends Component {
     }
 
     getMatchingDevices () {
+        if ( this.state.devices.length === 0 ) {
+            return <img
+                alt = { 'Loading data' }
+                src = { loading }
+            />
+        }
+
         return this.state.devices.filter( ( device ) => {
             if ( device.identity.includes( this.state.filter ) ) {
                 return true;
