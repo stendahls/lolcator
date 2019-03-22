@@ -54,6 +54,9 @@ class App extends Component {
                 .filter( ( device ) => {
                     return device.isPersonal;
                 } )
+                .filter( ( device ) => {
+                    return device.locator;
+                } )
                 .sort( ( a, b ) => {
                     return a.identity.localeCompare( b.identity );
                 } ),
