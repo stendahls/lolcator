@@ -57,6 +57,13 @@ header input {
     top: -7px;
 }
 
+.remove-link {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 20px;
+}
+
 .App.loaded {
     background: url(flamedivider.gif) repeat-x;
     background-position: bottom;

@@ -151,6 +151,12 @@ class App extends Component {
                         onChange = { this.handleFilterChange }
                         placeholder = { 'Find...' }
                     />
+                    <a
+                        href = "slack://user?team=T02FRPWEC&id=U6QK0T8MN"
+                        className = "remove-link"
+                    >
+                        Jag vill inte synas här!
+                    </a>
                 </header>
                 <div
                     className = { 'devices-wrapper' }
