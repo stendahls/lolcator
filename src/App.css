@@ -22,6 +22,11 @@
     font-stretch: normal;
 }
 
+a,
+a:visited {
+    color: #f9f9f9;
+}
+
 * {
     box-sizing: border-box;
 }

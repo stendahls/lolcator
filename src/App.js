@@ -109,8 +109,11 @@ class App extends Component {
                     <div
                         className = { 'location-wrapper' }
                     >
-                        { 'Room '}
-                        { device.ap.location }
+
+                        <a href="http://intranet.stendahls.se/sv/mitt-arbete/Min-arbetsplats/Vad-finns-var/Karta/" title="Tack Felicia! Bra idé">
+                            { 'Room '}
+                            { device.ap.location }
+                        </a>
                         <div>
                             { device.mac }
                         </div>
