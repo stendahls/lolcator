@@ -4,8 +4,8 @@ import TimeAgo from 'react-timeago';
 import './App.css';
 import loading from './loading.gif';
 
-const UNICATOR_HOST = 'unicator.stendahls.se';
 // const UNICATOR_HOST = 'localhost:4000';
+const UNICATOR_HOST = 'https://unicator.stendahls.se';
 
 
 class App extends Component {
@@ -28,7 +28,7 @@ class App extends Component {
     }
 
     updateData () {
-        fetch( `https://${ UNICATOR_HOST }/graphql`, {
+        fetch( `${ UNICATOR_HOST }/graphql`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify( { query: `{
@@ -38,6 +38,7 @@ class App extends Component {
                 hostname
                 mac
                 isPersonal
+                locator
                 ap {
                   name
                   location
