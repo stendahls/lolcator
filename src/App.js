@@ -23,7 +23,7 @@ class App extends Component {
 
     handleFilterChange( event ) {
         this.setState( {
-            filter: event.target.value,
+            filter: event.target.value.toLowerCase(),
         } );
     }
 
