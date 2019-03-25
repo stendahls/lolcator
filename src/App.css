@@ -64,9 +64,18 @@ header input {
     top: 20px;
 }
 
-.App.loaded {
-    background: url(flamedivider.gif) repeat-x;
+.flames {
     background-position: bottom;
+    background: url(flamedivider.gif) repeat-x;
+    bottom: 0;
+    content: " ";
+    height: 30px;
+    position: fixed;
+    width: 100%;
+}
+
+.App {
+    margin-bottom: 30px;
 }
 
 .devices-wrapper {
