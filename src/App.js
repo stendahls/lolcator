@@ -19,6 +19,8 @@ class App extends Component {
         };
 
         this.handleFilterChange = this.handleFilterChange.bind( this );
+
+        this.urlParams = new URLSearchParams( window.location.search );
     }
 
     handleFilterChange( event ) {
@@ -121,11 +123,13 @@ class App extends Component {
                         alt = { device.identity }
                         src = { `https://avatars.stendahls.net/avatar/${ crypto.createHash( 'md5' ).update( `${ device.identity }@stendahls.se` ).digest( 'hex' ) }` }
                     />
-                    <div
-                        className = { 'location-wrapper' }
-                    >
-                        { device.hostname }
-                    </div>
+                    { this.urlParams.get( 'debug' ) &&
+                        <div
+                            className = { 'location-wrapper' }
+                        >
+                            { device.hostname }
+                        </div>
+                    }
                     <div
                         className = { 'location-wrapper' }
                     >
@@ -134,9 +138,11 @@ class App extends Component {
                             { 'Room '}
                             { device.ap.location }
                         </a>
-                        <div>
-                            { device.mac }
-                        </div>
+                        { this.urlParams.get( 'debug' ) &&
+                            <div>
+                                { device.mac }
+                            </div>
+                        }
                     </div>
                     <TimeAgo
                         date = { device.lastSeen * 1000 }
