@@ -157,15 +157,16 @@ class App extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <h1>
-                        { 'LoLCator' }
-                        { ` ${ this.state.uniqueUsers }` }
+                    <h1
+                        title = { `Just nu är det ungefär ${ this.state.uniqueUsers } stendarlings i huset` }
+                    >
+                        { 'L0LC4tor' }
                     </h1>
                     <input
                         type = { 'text' }
                         value = { this.state.filter }
                         onChange = { this.handleFilterChange }
-                        placeholder = { 'Find...' }
+                        placeholder = { 'Hitta...' }
                     />
                     <a
                         href = "slack://user?team=T02FRPWEC&id=U6QK0T8MN"
