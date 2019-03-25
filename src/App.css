@@ -87,3 +87,37 @@ header input {
 .last-seen-wrapper {
     font-size: 12px;
 }
+
+@media ( max-width: 940px ) {
+    .device-wrapper {
+        width: 20%;
+    }
+}
+
+@media ( max-width: 760px ) {
+    .device-wrapper {
+        width: 25%;
+    }
+
+    .remove-link {
+        display: none;
+    }
+}
+
+@media ( max-width: 450px ) {
+    .device-wrapper {
+        width: 33.33333%;
+    }
+}
+
+@media ( max-width: 400px ) {
+    h1 {
+        font-size: 26px;
+    }
+}
+
+@media ( max-width: 340px ) {
+    h1 {
+        font-size: 20px;
+    }
+}
