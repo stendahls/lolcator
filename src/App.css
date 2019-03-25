@@ -106,19 +106,16 @@ header input {
 }
 
 @media ( max-width: 450px ) {
+    h1 {
+        font-size: 8vw;
+        width: 50%;
+    }
+
+    input {
+        width: calc( 50% - 2em );
+    }
+
     .device-wrapper {
         width: 33.33333%;
-    }
-}
-
-@media ( max-width: 400px ) {
-    h1 {
-        font-size: 26px;
-    }
-}
-
-@media ( max-width: 340px ) {
-    h1 {
-        font-size: 20px;
     }
 }
