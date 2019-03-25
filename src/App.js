@@ -139,7 +139,7 @@ class App extends Component {
                     >
 
                         <a href="http://intranet.stendahls.se/sv/mitt-arbete/Min-arbetsplats/Vad-finns-var/Karta/" title="Tack Felicia! Bra idé">
-                            { 'Room '}
+                            { 'Rum '}
                             { device.ap.location }
                         </a>
                         { this.urlParams.get( 'debug' ) &&
@@ -148,9 +148,11 @@ class App extends Component {
                             </div>
                         }
                     </div>
-                    <TimeAgo
-                        date = { device.lastSeen * 1000 }
-                    />
+                    { this.urlParams.get( 'debug' ) &&
+                        <TimeAgo
+                            date = { device.lastSeen * 1000 }
+                        />
+                    }
                 </div>
             </div> );
         } )
