@@ -89,6 +89,10 @@ class App extends Component {
         return identifier.toLowerCase().replace( /[.-]/g, ' ' );
     }
 
+    formatName( identifier ) {
+        return identifier.split( '.' )[ 0 ];
+    }
+
     getMatchingDevices () {
         if ( this.state.devices.length === 0 ) {
             return ( <img
@@ -115,7 +119,7 @@ class App extends Component {
                 className = { 'device-wrapper' }
                 key = { device.mac }
             >
-                { device.identity }
+                { this.formatName( device.identity ) }
                 <div
                     className = { 'last-seen-wrapper' }
                 >

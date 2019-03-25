@@ -80,6 +80,7 @@ header input {
     padding: 10px;
     text-align: center;
     text-overflow: ellipsis;
+    text-transform: capitalize;
     white-space: nowrap;
     width: 12.5%;
 }
