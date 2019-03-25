@@ -85,10 +85,10 @@ class App extends Component {
 
     getMatchingDevices () {
         if ( this.state.devices.length === 0 ) {
-            return <img
+            return ( <img
                 alt = { 'Loading data' }
                 src = { loading }
-            />
+            /> );
         }
 
         return this.state.devices.filter( ( device ) => {
@@ -103,7 +103,7 @@ class App extends Component {
             return false;
         } )
         .map( ( device ) => {
-            return <div
+            return ( <div
                 className = { 'device-wrapper' }
                 key = { device.mac }
             >
@@ -136,7 +136,7 @@ class App extends Component {
                         date = { device.lastSeen * 1000 }
                     />
                 </div>
-            </div>;
+            </div> );
         } )
         ;
     }
