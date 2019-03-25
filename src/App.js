@@ -83,6 +83,10 @@ class App extends Component {
         }, 60000 );
     }
 
+    normaliseIdentifier( identifier ) {
+        return identifier.toLowerCase().replace( /[.-]/g, ' ' );
+    }
+
     getMatchingDevices () {
         if ( this.state.devices.length === 0 ) {
             return ( <img
@@ -91,8 +95,10 @@ class App extends Component {
             /> );
         }
 
+        const normalisedFilter = this.normaliseIdentifier( this.state.filter );
+
         return this.state.devices.filter( ( device ) => {
-            if ( device.identity.includes( this.state.filter ) ) {
+            if ( this.normaliseIdentifier( device.identity ).includes( normalisedFilter ) ) {
                 return true;
             }
 
