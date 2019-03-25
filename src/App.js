@@ -1,6 +1,9 @@
-import React, { Component } from 'react';
 import crypto from 'crypto';
+
+import React, { Component } from 'react';
 import TimeAgo from 'react-timeago';
+import removeAccents from 'remove-accents';
+
 import './App.css';
 import loading from './loading.gif';
 
@@ -86,7 +89,7 @@ class App extends Component {
     }
 
     normaliseIdentifier( identifier ) {
-        return identifier.toLowerCase().replace( /[.-]/g, ' ' );
+        return removeAccents( identifier.toLowerCase().replace( /[.-]/g, ' ' ) );
     }
 
     formatName( identifier ) {
