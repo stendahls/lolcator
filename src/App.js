@@ -128,7 +128,7 @@ class App extends Component {
                 >
                     <img
                         alt = { device.identity }
-                        src = { `https://avatars.stendahls.net/avatar/${ crypto.createHash( 'md5' ).update( `${ device.identity }@stendahls.se` ).digest( 'hex' ) }` }
+                        src = { `https://avatars.stendahls.net/avatar/${ crypto.createHash( 'md5' ).update( `${ device.identity }@stendahls.se` ).digest( 'hex' ) }?s=512` }
                     />
                     { this.urlParams.get( 'debug' ) &&
                         <div

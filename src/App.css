@@ -98,6 +98,10 @@ header input {
     font-size: 12px;
 }
 
+.device-wrapper img {
+    width: 80%;
+}
+
 @media ( max-width: 940px ) {
     .device-wrapper {
         width: 20%;
