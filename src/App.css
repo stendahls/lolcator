@@ -65,8 +65,9 @@ header input {
 }
 
 .flames {
+    background-image: url( flamedivider.gif );
     background-position: bottom;
-    background: url(flamedivider.gif) repeat-x;
+    background-repeat: repeat-x;
     bottom: 0;
     content: " ";
     height: 30px;
