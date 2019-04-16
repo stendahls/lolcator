@@ -8,7 +8,7 @@ import './App.css';
 import loading from './loading.gif';
 
 // const UNICATOR_HOST = 'localhost:4000';
-const UNICATOR_HOST = 'https://unicator.int.stendahls.dev';
+const UNICATOR_HOST = 'https://unicator.stendahls.dev';
 
 
 class App extends Component {
