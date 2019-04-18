@@ -103,6 +103,10 @@ header input {
     width: 80%;
 }
 
+.offline {
+    text-align: center;
+}
+
 @media ( max-width: 940px ) {
     .device-wrapper {
         width: 20%;

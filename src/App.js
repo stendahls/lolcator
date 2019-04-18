@@ -6,11 +6,21 @@ import removeAccents from 'remove-accents';
 
 import './App.css';
 import loading from './loading.gif';
+import baby from './baby.gif';
 
 // const UNICATOR_HOST = 'localhost:4000';
 const UNICATOR_HOST = 'https://unicator.stendahls.dev';
 const LIBRAVATAR_SERVER = 'https://libravatar.stendahls.dev';
 
+const timeout = function timeout( ms, promise ) {
+    return new Promise( ( resolve, reject ) => {
+        setTimeout( () => {
+            reject( new Error( 'FETCH_TIMEOUT' ) );
+        }, ms );
+
+        promise.then( resolve, reject );
+    } );
+};
 
 class App extends Component {
     constructor(){
@@ -20,6 +30,7 @@ class App extends Component {
             filter: '',
             devices: [],
             uniqueUsers: 0,
+            onPremise: true,
         };
 
         this.handleFilterChange = this.handleFilterChange.bind( this );
@@ -34,24 +45,28 @@ class App extends Component {
     }
 
     updateData () {
-        fetch( `${ UNICATOR_HOST }/graphql`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify( { query: `{
-              devices {
-                identity
-                lastSeen
-                hostname
-                mac
-                isPersonal
-                locator
-                ap {
-                  name
-                  location
+        timeout( 5000,
+            fetch( `${ UNICATOR_HOST }/graphql`,
+                {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify( { query: `{
+                      devices {
+                        identity
+                        lastSeen
+                        hostname
+                        mac
+                        isPersonal
+                        locator
+                        ap {
+                          name
+                          location
+                        }
+                      }
+                    }` } ),
                 }
-              }
-            }` } ),
-        } )
+            )
+        )
         .then( ( response ) => {
             return response.json();
         } )
@@ -78,6 +93,13 @@ class App extends Component {
             this.setState( newState );
 
             document.querySelector( '.App' ).classList.add( 'loaded' );
+        } )
+        .catch( ( fetchError  ) => {
+            if ( fetchError.message === 'FETCH_TIMEOUT' ) {
+                this.setState( {
+                    onPremise: false,
+                } );
+            }
         } );
     }
 
@@ -165,6 +187,24 @@ class App extends Component {
         ;
     }
 
+    getRendering(){
+        if ( this.state.onPremise ) {
+            return this.getMatchingDevices();
+        }
+
+        return <div
+            className = { 'offline' }
+        >
+            <p>
+                { 'Du måste vara inne på stendahls hörru!' }
+            </p>
+            <img
+                alt = { 'Offline' }
+                src = { baby }
+            />
+        </div>;
+    }
+
     render() {
         return (
             <div className="App">
@@ -193,7 +233,8 @@ class App extends Component {
                 <div
                     className = { 'devices-wrapper' }
                 >
-                    { this.getMatchingDevices() }
+
+                    { this.getRendering() }
                 </div>
             </div>
         );
