@@ -82,6 +82,7 @@ class App extends Component {
     }
 
     componentDidMount(){
+        this.filterInput.focus();
         this.updateData();
 
         setInterval( () => {
@@ -178,6 +179,9 @@ class App extends Component {
                         value = { this.state.filter }
                         onChange = { this.handleFilterChange }
                         placeholder = { 'Hitta...' }
+                        ref = { ( input ) => {
+                            this.filterInput = input;
+                        } }
                     />
                     <a
                         href = "slack://user?team=T02FRPWEC&id=U6QK0T8MN"
