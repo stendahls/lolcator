@@ -9,6 +9,7 @@ import loading from './loading.gif';
 
 // const UNICATOR_HOST = 'localhost:4000';
 const UNICATOR_HOST = 'https://unicator.stendahls.dev';
+const LIBRAVATAR_SERVER = 'https://libravatar.stendahls.dev';
 
 
 class App extends Component {
@@ -128,7 +129,8 @@ class App extends Component {
                 >
                     <img
                         alt = { device.identity }
-                        src = { `https://avatars.stendahls.net/avatar/${ crypto.createHash( 'md5' ).update( `${ device.identity }@stendahls.se` ).digest( 'hex' ) }?s=512` }
+                        title = { device.identity }
+                        src = { `${ LIBRAVATAR_SERVER }/avatar/${ crypto.createHash( 'md5' ).update( `${ device.identity }@stendahls.se` ).digest( 'hex' ) }?s=512` }
                     />
                     { this.urlParams.get( 'debug' ) &&
                         <div
