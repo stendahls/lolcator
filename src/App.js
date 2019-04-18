@@ -196,12 +196,15 @@ class App extends Component {
             className = { 'offline' }
         >
             <p>
-                { 'Du måste vara inne på stendahls hörru!' }
+                { 'Du måste vara inne på Stendahls hörru!' }
             </p>
             <img
                 alt = { 'Offline' }
                 src = { baby }
             />
+            <p>
+                { 'Kom in, ta en fika och försök igen <3' }
+            </p>
         </div>;
     }
 
