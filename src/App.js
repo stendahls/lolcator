@@ -10,6 +10,14 @@ import baby from './baby.gif';
 
 const UNICATOR_HOST = 'https://unicator.stendahls.dev';
 const LIBRAVATAR_SERVER = 'https://libravatar.stendahls.dev';
+const DEFAULT_IMAGES = [
+    'https://images.weserv.nl/?url=www.stendahls.se/app/uploads/2017/09/PLACEHOLDER_01.jpg&w=512&h=512&t=square&a=center',
+    'https://images.weserv.nl/?url=www.stendahls.se/app/uploads/2014/09/PLACEHOLDER_02.jpg&w=512&h=512&t=square&a=center',
+];
+
+const getRandomDefaultImageURL = function getRandomDefaultImageURL(){
+    return DEFAULT_IMAGES[ Math.floor( Math.random() * DEFAULT_IMAGES.length ) ];
+};
 
 const timeout = function timeout( ms, promise ) {
     return new Promise( ( resolve, reject ) => {
@@ -152,7 +160,7 @@ class App extends Component {
                     <img
                         alt = { device.identity }
                         title = { device.identity }
-                        src = { `${ LIBRAVATAR_SERVER }/avatar/${ crypto.createHash( 'md5' ).update( `${ device.identity }@stendahls.se` ).digest( 'hex' ) }?s=512` }
+                        src = { `${ LIBRAVATAR_SERVER }/avatar/${ crypto.createHash( 'md5' ).update( `${ device.identity }@stendahls.se` ).digest( 'hex' ) }?s=512&default=${ encodeURIComponent( getRandomDefaultImageURL() ) }` }
                     />
                     { this.urlParams.get( 'debug' ) &&
                         <div
