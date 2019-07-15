@@ -15,6 +15,9 @@ const DEFAULT_IMAGES = [
     'https://images.weserv.nl/?url=www.stendahls.se/app/uploads/2014/09/PLACEHOLDER_02.jpg&w=512&h=512&t=square&a=center',
 ];
 
+// Only show people that have been on for less than 12 hours
+const MAX_AVAILABLE_TIME = 12 * 60 * 60;
+
 const getRandomDefaultImageURL = function getRandomDefaultImageURL(){
     return DEFAULT_IMAGES[ Math.floor( Math.random() * DEFAULT_IMAGES.length ) ];
 };
@@ -60,6 +63,7 @@ class App extends Component {
                     body: JSON.stringify( { query: `{
                       devices {
                         identity
+                        firstSeen
                         lastSeen
                         hostname
                         mac
@@ -85,6 +89,9 @@ class App extends Component {
                 } )
                 .filter( ( device ) => {
                     return device.locator;
+                } )
+                .filter( ( device ) => {
+                    return new Date().getTime() / 1000 - device.firstSeen < MAX_AVAILABLE_TIME;
                 } )
                 .sort( ( a, b ) => {
                     return a.identity.localeCompare( b.identity );
