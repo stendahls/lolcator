@@ -142,9 +142,25 @@ class App extends Component {
             /> );
         }
 
+        const actualDevices = {};
+
+        this.state.devices.map( ( device ) => {
+            if ( !actualDevices[ device.identity ] ) {
+                actualDevices[ device.identity ] = device;
+
+                return true;
+            }
+
+            if ( actualDevices[ device.identity ].firstSeen < device.firstSeen ) {
+                actualDevices[ device.identity ] = device;
+
+                return true;
+            }
+        } );
+
         const normalisedFilter = this.normaliseIdentifier( this.state.filter );
 
-        return this.state.devices.filter( ( device ) => {
+        return Object.values( actualDevices ).filter( ( device ) => {
             if ( this.normaliseIdentifier( device.identity ).includes( normalisedFilter ) ) {
                 return true;
             }
