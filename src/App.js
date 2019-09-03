@@ -156,6 +156,8 @@ class App extends Component {
 
                 return true;
             }
+            
+            return true;
         } );
 
         const normalisedFilter = this.normaliseIdentifier( this.state.filter );
