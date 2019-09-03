@@ -1,3 +1,9 @@
+// Polyfills for IE11
+import 'react-app-polyfill/ie11';
+import 'url-search-params-polyfill';
+import 'es7-object-polyfill';
+import 'string.prototype.includes';
+
 import crypto from 'crypto';
 
 import React, { Component } from 'react';
@@ -102,7 +108,7 @@ class App extends Component {
                 return device.identity;
             } );
 
-            newState.uniqueUsers = [ ...new Set( logins ) ].length;
+            newState.uniqueUsers = [ ...logins.filter((v, i, a) => a.indexOf(v) === i) ].length;
 
             this.setState( newState );
 
