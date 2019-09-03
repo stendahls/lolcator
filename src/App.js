@@ -182,6 +182,7 @@ class App extends Component {
         .map( ( device ) => {
             return ( <div
                 className = { 'device-wrapper' }
+                title = { device.identity }
                 key = { device.mac }
             >
                 { this.formatName( device.identity ) }
@@ -190,7 +191,6 @@ class App extends Component {
                 >
                     <img
                         alt = { device.identity }
-                        title = { device.identity }
                         src = { `${ LIBRAVATAR_SERVER }/avatar/${ crypto.createHash( 'md5' ).update( `${ device.identity }@stendahls.se` ).digest( 'hex' ) }?s=512&default=${ encodeURIComponent( getRandomDefaultImageURL() ) }` }
                     />
                     { this.urlParams.get( 'debug' ) &&
