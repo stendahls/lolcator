@@ -19,3 +19,10 @@ steps:
     region: eu-west-1
     source: build/*
     target: /
+    
+# - name: code-analysis
+#   image: aosapps/drone-sonar-plugin
+#   settings:
+#     sonar_host: https://sonar.stendahls.net
+#     sonar_token:
+#       from_secret: sonar_token
