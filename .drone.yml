@@ -8,8 +8,8 @@ steps:
   - npm ci
   - npm run build
   
-- name: sync
-  image: plugins/s3-sync:1
+- name: upload
+  image: plugins/s3
   settings:
     bucket: lolcator.static.stendahls.se
     access_key: 
@@ -17,8 +17,9 @@ steps:
     secret_key: 
       from_secret: AWS_SECRET_ACCESS_KEY
     region: eu-west-1
-    source: build/*
+    source: build/**/*
     target: /
+    strip_prefix: build/
     
 # - name: code-analysis
 #   image: aosapps/drone-sonar-plugin
