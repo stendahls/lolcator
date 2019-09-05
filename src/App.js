@@ -204,7 +204,7 @@ class App extends Component {
                         className = { 'location-wrapper' }
                     >
 
-                        <a href="http://intranet.stendahls.se/sv/mitt-arbete/Min-arbetsplats/Vad-finns-var/Karta/" title="Tack Felicia! Bra idé">
+                        <a href="http://intranet.stendahls.se/livet-pa-stendahls/vad-finns-var/kartor/" title="Tack Felicia! Bra idé">
                             { 'Rum '}
                             { device.ap.location }
                         </a>
