@@ -1,0 +1,21 @@
+kind: pipeline
+name: default
+
+steps:
+- name: build
+  image: node
+  commands:
+  - npm ci
+  - npm run build
+  
+- name: sync
+  image: plugins/s3-sync:1
+  settings:
+    bucket: lolcator.static.stendahls.se
+    access_key: 
+      from_secret: AWS_ACCESS_KEY_ID
+    secret_key: 
+      from_secret: AWS_ACCESS_KEY
+    region: eu-west-1
+    source: build/*
+    target: /
