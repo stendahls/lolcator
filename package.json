@@ -13,6 +13,7 @@
     "url-search-params-polyfill": "^7.0.0"
   },
   "scripts": {
+    "dev": "npm start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
