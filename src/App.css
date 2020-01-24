@@ -41,6 +41,7 @@ h1 {
     display: inline-block;
     font-family: 'Orbitron', sans-serif;
     margin: 0;
+    cursor: pointer;
 }
 
 header {
@@ -107,6 +108,24 @@ header input {
     text-align: center;
 }
 
+.coin {
+    display: inline-block;
+    height: 36px;
+    width: 36px;
+    position: relative;
+    top: 3px;
+    margin-right: 2em;
+}
+
+.coin-clicked {
+    top: -4px;
+    transition: top 0.2s linear;
+}
+
+.coin:hover {
+    cursor: pointer;
+}
+
 @media ( max-width: 940px ) {
     .device-wrapper {
         width: 20%;
@@ -125,15 +144,21 @@ header input {
 
 @media ( max-width: 450px ) {
     h1 {
-        font-size: 8vw;
-        width: 50%;
+        font-size: 6vw;
+        width: 40%;
     }
 
     input {
-        width: calc( 50% - 2em );
+        width: calc( 40% - 2em );
     }
 
     .device-wrapper {
         width: 33.33333%;
+    }
+}
+
+@media ( max-width: 380px ) {
+    .coin {
+        margin-right: 1em;
     }
 }

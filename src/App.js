@@ -13,6 +13,8 @@ import removeAccents from 'remove-accents';
 import './App.css';
 import loading from './loading.gif';
 import baby from './baby.gif';
+import coin from './coin.jpg';
+import coinsound from './coin.mp3';
 
 const UNICATOR_HOST = 'https://unicator.stendahls.dev';
 const LIBRAVATAR_SERVER = 'https://libravatar.stendahls.dev';
@@ -50,13 +52,54 @@ class App extends Component {
         };
 
         this.handleFilterChange = this.handleFilterChange.bind( this );
+        this.handleCoinClick = this.handleCoinClick.bind( this );
+        this.handleTitleClick = this.handleTitleClick.bind( this );
 
         this.urlParams = new URLSearchParams( window.location.search );
     }
 
     handleFilterChange( event ) {
+        const normalisedFilter = this.normaliseIdentifier( this.state.filter );
+
+        const devices = this.state.validDevices.filter( ( device ) => {
+            if ( this.normaliseIdentifier( device.identity ).includes( normalisedFilter ) ) {
+                return true;
+            }
+
+            if ( device.ap.location.indexOf( this.state.filter ) === 0 ) {
+                return true;
+            }
+
+            return false;
+        } );
+        
+        
         this.setState( {
             filter: event.target.value,
+            devices: devices,
+        } );
+    }
+    
+    handleCoinClick( event ) {
+        this.coinButton.classList.add('coin-clicked');
+        this.coinPlayer.play();
+        
+        const randomIndex = Math.floor(Math.random() * Math.floor(this.state.validDevices.length));
+        
+        this.setState( {
+            devices: this.state.validDevices.slice(randomIndex, randomIndex + 1),
+            filter: '',
+        } );
+        
+        setTimeout( () => {
+            this.coinButton.classList.remove('coin-clicked');
+        }, 200 );
+    }
+    
+    handleTitleClick() {
+        this.setState( {
+            devices: this.state.validDevices,
+            filter: '',
         } );
     }
 
@@ -88,27 +131,50 @@ class App extends Component {
             return response.json();
         } )
         .then( ( response ) => {
-            const newState = {
-                devices: response.data.devices
-                .filter( ( device ) => {
-                    return device.isPersonal;
-                } )
-                .filter( ( device ) => {
-                    return device.locator;
-                } )
-                .filter( ( device ) => {
-                    return new Date().getTime() / 1000 - device.firstSeen < MAX_AVAILABLE_TIME;
-                } )
-                .sort( ( a, b ) => {
-                    return a.identity.localeCompare( b.identity );
-                } ),
-            };
+            const newState = {};
+            const actualDevices = {};
+            
+            const validDevices = response.data.devices
+                    .filter( ( device ) => {
+                        return device.isPersonal;
+                    } )
+                    .filter( ( device ) => {
+                        return device.locator;
+                    } )
+                    .filter( ( device ) => {
+                        return new Date().getTime() / 1000 - device.firstSeen < MAX_AVAILABLE_TIME;
+                    } )
+                    .sort( ( a, b ) => {
+                        return a.identity.localeCompare( b.identity );
+                    } );
 
-            const logins = newState.devices.map( ( device ) => {
+            validDevices.map( ( device ) => {
+                if ( !actualDevices[ device.identity ] ) {
+                    actualDevices[ device.identity ] = device;
+    
+                    return true;
+                }
+    
+                if ( actualDevices[ device.identity ].firstSeen < device.firstSeen ) {
+                    actualDevices[ device.identity ] = device;
+    
+                    return true;
+                }
+                
+                return true;
+            } );
+            
+            newState.validDevices = Object.values( actualDevices );
+            
+            const logins = newState.validDevices.map( ( device ) => {
                 return device.identity;
             } );
 
             newState.uniqueUsers = [ ...logins.filter((v, i, a) => a.indexOf(v) === i) ].length;
+            
+            if ( this.state.devices.length === 0 && !this.state.filter ) {
+                newState.devices = newState.validDevices;
+            }
 
             this.setState( newState );
 
@@ -147,39 +213,8 @@ class App extends Component {
                 src = { loading }
             /> );
         }
-
-        const actualDevices = {};
-
-        this.state.devices.map( ( device ) => {
-            if ( !actualDevices[ device.identity ] ) {
-                actualDevices[ device.identity ] = device;
-
-                return true;
-            }
-
-            if ( actualDevices[ device.identity ].firstSeen < device.firstSeen ) {
-                actualDevices[ device.identity ] = device;
-
-                return true;
-            }
-            
-            return true;
-        } );
-
-        const normalisedFilter = this.normaliseIdentifier( this.state.filter );
-
-        return Object.values( actualDevices ).filter( ( device ) => {
-            if ( this.normaliseIdentifier( device.identity ).includes( normalisedFilter ) ) {
-                return true;
-            }
-
-            if ( device.ap.location.indexOf( this.state.filter ) === 0 ) {
-                return true;
-            }
-
-            return false;
-        } )
-        .map( ( device ) => {
+        
+        return this.state.devices.map( ( device ) => {
             return ( <div
                 className = { 'device-wrapper' }
                 title = { device.identity }
@@ -204,7 +239,10 @@ class App extends Component {
                         className = { 'location-wrapper' }
                     >
 
-                        <a href="http://intranet.stendahls.se/livet-pa-stendahls/vad-finns-var/kartor/" title="Tack Felicia! Bra idé">
+                        <a
+                            href="http://intranet.stendahls.se/livet-pa-stendahls/vad-finns-var/kartor/"
+                            title="Tack Felicia! Bra idé"
+                        >
                             { 'Rum '}
                             { device.ap.location }
                         </a>
@@ -250,7 +288,29 @@ class App extends Component {
         return (
             <div className="App">
                 <header className="App-header">
+                    <img
+                        alt = 'Slumpa fram en stendarling'
+                        className = 'coin'
+                        onClick = { this.handleCoinClick }
+                        title = 'Slumpa fram en stendarling'
+                        src = { coin }
+                        ref = { ( img ) => {
+                            this.coinButton = img;
+                        } }
+                    />
+                    <audio
+                        controls=""
+                        ref = { ( player ) => {
+                            this.coinPlayer = player;
+                        } }
+                    >
+                        <source
+                            src = { coinsound }
+                            type = 'audio/mpeg'
+                        />
+                    </audio>
                     <h1
+                        onClick = { this.handleTitleClick }
                         title = { `Just nu är det ungefär ${ this.state.uniqueUsers } stendarlings i huset` }
                     >
                         { 'L0LC4tor' }
