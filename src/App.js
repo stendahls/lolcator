@@ -19,8 +19,9 @@ import coinsound from './coin.mp3';
 const UNICATOR_HOST = 'https://unicator.stendahls.dev';
 const LIBRAVATAR_SERVER = 'https://libravatar.stendahls.dev';
 const DEFAULT_IMAGES = [
-    'https://images.weserv.nl/?url=www.stendahls.se/app/uploads/2017/09/PLACEHOLDER_01.jpg&w=512&h=512&t=square&a=center',
-    'https://images.weserv.nl/?url=www.stendahls.se/app/uploads/2014/09/PLACEHOLDER_02.jpg&w=512&h=512&t=square&a=center',
+    'https://images.weserv.nl/?url=www.stendahls.se/wp-content/uploads/2020/03/PLACEHOLDER_01.jpg&w=512&h=512&t=square&a=center',
+    'https://images.weserv.nl/?url=www.stendahls.se/wp-content/uploads/2020/03/PLACEHOLDER_02.jpg&w=512&h=512&t=square&a=center',
+    'https://images.weserv.nl/?url=www.stendahls.se/wp-content/uploads/2020/03/PLACEHOLDER_03.jpgg&w=512&h=512&t=square&a=center',
 ];
 
 // Only show people that have been on for less than 12 hours
@@ -72,30 +73,30 @@ class App extends Component {
 
             return false;
         } );
-        
-        
+
+
         this.setState( {
             filter: event.target.value,
             devices: devices,
         } );
     }
-    
+
     handleCoinClick( event ) {
         this.coinButton.classList.add('coin-clicked');
         this.coinPlayer.play();
-        
+
         const randomIndex = Math.floor(Math.random() * Math.floor(this.state.validDevices.length));
-        
+
         this.setState( {
             devices: this.state.validDevices.slice(randomIndex, randomIndex + 1),
             filter: '',
         } );
-        
+
         setTimeout( () => {
             this.coinButton.classList.remove('coin-clicked');
         }, 200 );
     }
-    
+
     handleTitleClick() {
         this.setState( {
             devices: this.state.validDevices,
@@ -133,7 +134,7 @@ class App extends Component {
         .then( ( response ) => {
             const newState = {};
             const actualDevices = {};
-            
+
             const validDevices = response.data.devices
                     .filter( ( device ) => {
                         return device.isPersonal;
@@ -151,27 +152,27 @@ class App extends Component {
             validDevices.map( ( device ) => {
                 if ( !actualDevices[ device.identity ] ) {
                     actualDevices[ device.identity ] = device;
-    
+
                     return true;
                 }
-    
+
                 if ( actualDevices[ device.identity ].firstSeen < device.firstSeen ) {
                     actualDevices[ device.identity ] = device;
-    
+
                     return true;
                 }
-                
+
                 return true;
             } );
-            
+
             newState.validDevices = Object.values( actualDevices );
-            
+
             const logins = newState.validDevices.map( ( device ) => {
                 return device.identity;
             } );
 
             newState.uniqueUsers = [ ...logins.filter((v, i, a) => a.indexOf(v) === i) ].length;
-            
+
             if ( this.state.devices.length === 0 && !this.state.filter ) {
                 newState.devices = newState.validDevices;
             }
@@ -218,7 +219,7 @@ class App extends Component {
                 src = { loading }
             /> );
         }
-        
+
         return this.state.devices.map( ( device ) => {
             return ( <div
                 className = { 'device-wrapper' }
