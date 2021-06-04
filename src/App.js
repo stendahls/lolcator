@@ -16,7 +16,7 @@ import baby from './baby.gif';
 import coin from './coin.jpg';
 import coinsound from './coin.mp3';
 
-const UNICATOR_HOST = 'https://unicator.stendahls.dev';
+const UNICATOR_HOST = 'https://unicator-new.stendahls.dev';
 const LIBRAVATAR_SERVER = 'https://libravatar.stendahls.dev';
 const DEFAULT_IMAGES = [
     'https://images.weserv.nl/?url=www.stendahls.se/wp-content/uploads/2020/03/PLACEHOLDER_01.jpg&w=512&h=512&t=square&a=center',
