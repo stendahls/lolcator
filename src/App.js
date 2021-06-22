@@ -21,7 +21,7 @@ const LIBRAVATAR_SERVER = 'https://libravatar.stendahls.dev';
 const DEFAULT_IMAGES = [
     'https://images.weserv.nl/?url=www.stendahls.se/wp-content/uploads/2020/03/PLACEHOLDER_01.jpg&w=512&h=512&t=square&a=center',
     'https://images.weserv.nl/?url=www.stendahls.se/wp-content/uploads/2020/03/PLACEHOLDER_02.jpg&w=512&h=512&t=square&a=center',
-    'https://images.weserv.nl/?url=www.stendahls.se/wp-content/uploads/2020/03/PLACEHOLDER_03.jpgg&w=512&h=512&t=square&a=center',
+    'https://images.weserv.nl/?url=www.stendahls.se/wp-content/uploads/2020/03/PLACEHOLDER_03.jpg&w=512&h=512&t=square&a=center',
 ];
 
 // Only show people that have been on for less than 12 hours
