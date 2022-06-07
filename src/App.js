@@ -106,7 +106,7 @@ class App extends Component {
 
     updateData () {
         timeout( 5000,
-            fetch( `${ UNICATOR_HOST }/graphql`,
+            fetch( `${ UNICATOR_HOST }/graphql`,
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -232,7 +232,7 @@ class App extends Component {
                 >
                     <img
                         alt = { device.identity }
-                        src = { `${ LIBRAVATAR_SERVER }/avatar/${ crypto.createHash( 'md5' ).update( `${ device.identity }@stendahls.se` ).digest( 'hex' ) }?s=512&default=${ encodeURIComponent( getRandomDefaultImageURL() ) }` }
+                        src = { `${ LIBRAVATAR_SERVER }/avatar/${ crypto.createHash( 'md5' ).update( `${ device.identity }@stendahls.se` ).digest( 'hex' ) }?s=512&default=${ encodeURIComponent( getRandomDefaultImageURL() ) }` }
                     />
                     { this.urlParams.get( 'debug' ) &&
                         <div
@@ -311,7 +311,7 @@ class App extends Component {
                         } }
                     >
                         <source
-                            src = { coinsound }
+                            src = { coinsound }
                             type = 'audio/mpeg'
                         />
                     </audio>
