@@ -331,7 +331,7 @@ class App extends Component {
                         } }
                     />
                     <a
-                        href = "slack://user?team=T02FRPWEC&id=U6QK0T8MN"
+                        href = "slack://user?team=T034ZQLT0&id=U02CRLC7A5C"
                         className = "remove-link"
                     >
                         Jag vill inte synas här!
