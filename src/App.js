@@ -246,7 +246,7 @@ class App extends Component {
                     >
 
                         <a
-                            href="http://intranet.stendahls.se/livet-pa-stendahls/vad-finns-var/kartor/"
+                            href="https://intranet.stendahls.dev/hr-praktisk-information/vad-finns-var/kartor/"
                             title="Tack Felicia! Bra idé"
                         >
                             { 'Rum '}
