@@ -60,14 +60,14 @@ class App extends Component {
     }
 
     handleFilterChange( event ) {
-        const normalisedFilter = this.normaliseIdentifier( this.state.filter );
+        const normalisedFilter = this.normaliseIdentifier( event.target.value );
 
         const devices = this.state.validDevices.filter( ( device ) => {
             if ( this.normaliseIdentifier( device.identity ).includes( normalisedFilter ) ) {
                 return true;
             }
 
-            if ( device.ap.location.indexOf( this.state.filter ) === 0 ) {
+            if ( device.ap.location.indexOf( event.target.value ) === 0 ) {
                 return true;
             }
 
