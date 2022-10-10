@@ -322,10 +322,11 @@ class App extends Component {
                         { 'L0LC4tor' }
                     </h1>
                     <input
-                        type = { 'text' }
+                        type = { 'search' }
                         value = { this.state.filter }
                         onChange = { this.handleFilterChange }
                         placeholder = { 'Hitta...' }
+                        aria-label = { 'Hitta...' }
                         ref = { ( input ) => {
                             this.filterInput = input;
                         } }
