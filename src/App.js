@@ -1,10 +1,4 @@
-// Polyfills for IE11
-import 'react-app-polyfill/ie11';
-import 'url-search-params-polyfill';
-import 'es7-object-polyfill';
-import 'string.prototype.includes';
-
-import crypto from 'crypto';
+import md5 from 'crypto-js/md5';
 
 import React, { Component } from 'react';
 import TimeAgo from 'react-timeago';
@@ -232,7 +226,7 @@ class App extends Component {
                 >
                     <img
                         alt = { device.identity }
-                        src = { `${ LIBRAVATAR_SERVER }/avatar/${ crypto.createHash( 'md5' ).update( `${ device.identity }@stendahls.se` ).digest( 'hex' ) }?s=512&default=${ encodeURIComponent( getRandomDefaultImageURL() ) }` }
+                        src = { `${ LIBRAVATAR_SERVER }/avatar/${ md5( `${ device.identity }@stendahls.se` ) }?s=512&default=${ encodeURIComponent( getRandomDefaultImageURL() ) }` }
                     />
                     { this.urlParams.get( 'debug' ) &&
                         <div
