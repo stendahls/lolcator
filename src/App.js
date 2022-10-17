@@ -9,6 +9,7 @@ import loading from './loading.gif';
 import baby from './baby.gif';
 import coin from './coin.jpg';
 import coinsound from './coin.mp3';
+import empty from './empty.webp';
 
 const UNICATOR_HOST = 'https://unicator.stendahls.dev';
 const LIBRAVATAR_SERVER = 'https://libravatar.stendahls.dev';
@@ -207,10 +208,17 @@ class App extends Component {
     }
 
     getMatchingDevices () {
-        if ( this.state.devices.length === 0 ) {
+        if ( this.state.validDevices?.length === 0 ) {
             return ( <img
                 alt = { 'Loading data' }
                 src = { loading }
+            /> );
+        }
+
+        if ( this.state.devices.length === 0 ) {
+            return ( <img
+                alt = { 'Nothing here' }
+                src = { empty }
             /> );
         }
 
@@ -259,8 +267,7 @@ class App extends Component {
                     }
                 </div>
             </div> );
-        } )
-        ;
+        } );
     }
 
     getRendering(){
