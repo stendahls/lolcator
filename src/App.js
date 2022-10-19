@@ -148,7 +148,7 @@ class App extends Component {
                 if ( !actualDevices[ device.identity ] ) {
                     actualDevices[ device.identity ] = device;
 
-                    return true;
+                    return false;
                 }
 
                 if ( actualDevices[ device.identity ].firstSeen < device.firstSeen ) {
