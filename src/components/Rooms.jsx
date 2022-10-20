@@ -12,7 +12,7 @@ function Rooms ({bookingsToday: rooms}) {
             <div
                 className = "right-now-line"
                 style = {{
-                    left: `${Math.max(rightNowPosition, 0)}%`,
+                    left: `${Math.min(Math.max(rightNowPosition, 0), 100)}%`,
                 }}
             />
 
