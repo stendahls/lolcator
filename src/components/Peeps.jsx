@@ -42,7 +42,7 @@ const Peeps = function({validDevices, urlParams}){
                 >
 
                     <a
-                        href="https://intranet.stendahls.dev/hr-praktisk-information/vad-finns-var/kartor/"
+                        href={`https://intranet.stendahls.dev/praktisk-information/vad-finns-var/kartor/?vaning=${device.ap.location.substring(0, 1)}&typ=vaningar`}
                         title="Tack Felicia! Bra idé"
                     >
                         { 'Rum '}

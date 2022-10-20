@@ -21,7 +21,11 @@ function Rooms ({bookingsToday: rooms}) {
                     key = {room.identifier}
                 >
                     <h2>
-                        {room.displayName} - {room.identifier.substring(0, 3)}
+                        <a
+                            href = {`https://intranet.stendahls.dev/praktisk-information/vad-finns-var/kartor/?vaning=${room.identifier.substring(0, 1)}&typ=motesrum`}
+                        >
+                            {room.displayName} - {room.identifier.substring(0, 3)}
+                        </a>
                     </h2>
                     <div
                         className = "room-wrapper"
