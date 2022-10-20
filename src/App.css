@@ -83,6 +83,10 @@ header input {
     margin-bottom: 30px;
 }
 
+.message-wrapper {
+    text-align: center;
+}
+
 .devices-wrapper {
     display: flex;
     flex-wrap: wrap;
