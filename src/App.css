@@ -45,17 +45,19 @@ h1 {
 }
 
 header {
+    display: flex;
     text-align: center;
+    justify-content: center;
+    gap: 3em;
+    align-items: center;
     margin: 1em;
 }
 
 header input {
     border-radius: 1px;
     border: 1px solid #ccc;
-    margin-left: 2em;
+    margin-left: 1em;
     padding: 0.5em;
-    position: relative;
-    top: -7px;
     font-size: 16px;
 }
 
@@ -109,27 +111,64 @@ header input {
     text-align: center;
 }
 
-.coin {
+.coin,
+.mushroom {
     display: inline-block;
     height: 36px;
     width: 36px;
     position: relative;
     top: 3px;
-    margin-right: 2em;
 }
 
-.coin-clicked {
+.coin-clicked,
+.mushroom-clicked {
     top: -4px;
     transition: top 0.2s linear;
 }
 
-.coin:hover {
+.coin:hover,
+.mushroom:hover {
     cursor: pointer;
+}
+
+.rooms {
+    margin-left: 60px;
+    margin-right: 60px;
+    position: relative;
+}
+
+.right-now-line {
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.room-wrapper {
+    border: 1px solid #fff;
+    position: relative;
+    height: 40px;
+}
+
+.booking-wrapper {
+    background-color: #fff;
+    bottom: 0;
+    color: #000;
+    font-size: 10px;
+    position: absolute;
+    text-align: center;
+    top: 0;
 }
 
 @media ( max-width: 940px ) {
     .device-wrapper {
         width: 20%;
+    }
+
+    header {
+        justify-content: space-between;
+        gap: 0;
     }
 }
 
@@ -140,6 +179,12 @@ header input {
 
     .remove-link {
         display: none;
+    }
+
+    .rooms {
+        margin-left: 1em;
+        margin-right: 1em;
+        position: relative;
     }
 }
 
@@ -155,11 +200,5 @@ header input {
 
     .device-wrapper {
         width: 33.33333%;
-    }
-}
-
-@media ( max-width: 380px ) {
-    .coin {
-        margin-right: 1em;
     }
 }

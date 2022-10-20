@@ -10,8 +10,9 @@ import baby from './baby.gif';
 import coin from './coin.jpg';
 import coinsound from './coin.mp3';
 import empty from './empty.webp';
+import mushroom from './mushroom.png';
 
-const UNICATOR_HOST = 'https://unicator.stendahls.dev';
+import Rooms from './Rooms';
 const LIBRAVATAR_SERVER = 'https://libravatar.stendahls.dev';
 const DEFAULT_IMAGES = [
     'https://images.weserv.nl/?url=www.stendahls.se/wp-content/uploads/2020/03/PLACEHOLDER_01.jpg&w=512&h=512&t=square&a=center',
@@ -43,13 +44,16 @@ class App extends Component {
         this.state = {
             filter: '',
             devices: [],
+            bookingsToday: [],
             uniqueUsers: 0,
             onPremise: true,
+            view: 'peeps',
         };
 
         this.handleFilterChange = this.handleFilterChange.bind( this );
         this.handleCoinClick = this.handleCoinClick.bind( this );
         this.handleTitleClick = this.handleTitleClick.bind( this );
+        this.handleMushroomClick = this.handleMushroomClick.bind( this );
 
         this.urlParams = new URLSearchParams( window.location.search );
     }
@@ -85,6 +89,7 @@ class App extends Component {
         this.setState( {
             devices: this.state.validDevices.slice(randomIndex, randomIndex + 1),
             filter: '',
+            view: 'peeps',
         } );
 
         setTimeout( () => {
@@ -96,7 +101,19 @@ class App extends Component {
         this.setState( {
             devices: this.state.validDevices,
             filter: '',
+            view: 'peeps',
         } );
+    }
+
+    handleMushroomClick() {
+        this.mushroomButton.classList.add('mushroom-clicked');
+        this.setState({
+            view: 'rooms',
+        });
+
+        setTimeout( () => {
+            this.mushroomButton.classList.remove('mushroom-clicked');
+        }, 200 );
     }
 
     updateData () {
@@ -148,7 +165,7 @@ class App extends Component {
                 if ( !actualDevices[ device.identity ] ) {
                     actualDevices[ device.identity ] = device;
 
-                    return true;
+                    return false;
                 }
 
                 if ( actualDevices[ device.identity ].firstSeen < device.firstSeen ) {
@@ -185,12 +202,48 @@ class App extends Component {
         } );
     }
 
+    updateRoomData () {
+        timeout( 5000,
+            fetch( `${ UNICATOR_HOST }/graphql`,
+                {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify( { query: `{
+                        bookingsToday {
+                            roomIdentifier
+                            roomDisplayName
+                            start
+                            end
+                        }
+                    }` } ),
+                }
+            )
+        )
+        .then( ( response ) => {
+            return response.json();
+        } )
+        .then( ( response ) => {
+            this.setState( {
+                bookingsToday: response.data.bookingsToday,
+            });
+        } )
+        .catch( ( fetchError  ) => {
+            if ( fetchError.message === 'FETCH_TIMEOUT' ) {
+                this.setState( {
+                    onPremise: false,
+                } );
+            }
+        } );
+    }
+
     componentDidMount(){
         this.filterInput.focus();
         this.updateData();
+        this.updateRoomData();
 
         setInterval( () => {
             this.updateData();
+            this.updateRoomData();
         }, 60000 );
     }
 
@@ -296,6 +349,16 @@ class App extends Component {
             <div className="App">
                 <header className="App-header">
                     <img
+                        alt = 'Hitta ett konferensrum'
+                        className = 'mushroom'
+                        onClick = { this.handleMushroomClick }
+                        title = 'Hitta ett konferensrum'
+                        src = { mushroom }
+                        ref = { ( img ) => {
+                            this.mushroomButton = img;
+                        } }
+                    />
+                    <img
                         alt = 'Slumpa fram en stendarling'
                         className = 'coin'
                         onClick = { this.handleCoinClick }
@@ -339,12 +402,13 @@ class App extends Component {
                         Jag vill inte synas här!
                     </a>
                 </header>
-                <div
+                {this.state.view === 'rooms' && <Rooms bookingsToday={this.state.bookingsToday}/>}
+                {this.state.view !== 'rooms'&& <div
                     className = { 'devices-wrapper' }
                 >
 
                     { this.getRendering() }
-                </div>
+                </div>}
             </div>
         );
     }
