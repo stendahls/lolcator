@@ -13,6 +13,7 @@ import empty from './empty.webp';
 import mushroom from './mushroom.png';
 
 import Rooms from './Rooms';
+const UNICATOR_HOST = 'https://unicator.stendahls.dev';
 const LIBRAVATAR_SERVER = 'https://libravatar.stendahls.dev';
 const DEFAULT_IMAGES = [
     'https://images.weserv.nl/?url=www.stendahls.se/wp-content/uploads/2020/03/PLACEHOLDER_01.jpg&w=512&h=512&t=square&a=center',
