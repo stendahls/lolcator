@@ -337,7 +337,7 @@ const App = function App() {
                     alt = { 'Loading data' }
                     src = { loading }
                 />}
-                {!isLoading && validDevices.length === 0 && <img
+                {!isLoading && view !== 'rooms' && validDevices.length === 0 && <img
                     alt = { 'Nothing here' }
                     src = { empty }
                 /> }
