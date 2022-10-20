@@ -1,19 +1,6 @@
 const dayDuration = 8.5 * 60 * 60 * 1000;
 
-function Rooms ({bookingsToday}) {
-    const rooms = {};
-    for(const booking of bookingsToday) {
-        if(!rooms[booking.roomIdentifier]) {
-            rooms[booking.roomIdentifier] = {
-                identifier: booking.roomIdentifier,
-                displayName: booking.roomDisplayName,
-                bookings: [],
-            };
-        }
-
-        rooms[booking.roomIdentifier].bookings.push(booking);
-    }
-
+function Rooms ({bookingsToday: rooms}) {
     const startOfToday = new Date().setHours(8, 30, 0, 0);
     // const endOfToday = new Date().setHours(17);
 
@@ -29,7 +16,7 @@ function Rooms ({bookingsToday}) {
                 }}
             />
 
-            {Object.values(rooms).map(room => {
+            {rooms.map(room => {
                 return <div
                     key = {room.identifier}
                 >

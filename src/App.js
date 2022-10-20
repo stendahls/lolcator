@@ -211,10 +211,12 @@ class App extends Component {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify( { query: `{
                         bookingsToday {
-                            roomIdentifier
-                            roomDisplayName
+                            identifier
+                            displayName
+                            bookings {
                             start
                             end
+                            }
                         }
                     }` } ),
                 }
