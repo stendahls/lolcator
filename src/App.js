@@ -1,6 +1,6 @@
 import md5 from 'crypto-js/md5';
 
-import React, { Component } from 'react';
+import { Component } from 'react';
 import TimeAgo from 'react-timeago';
 import removeAccents from 'remove-accents';
 
@@ -73,7 +73,6 @@ class App extends Component {
 
             return false;
         } );
-
 
         this.setState( {
             filter: event.target.value,
@@ -347,6 +346,20 @@ class App extends Component {
         </div>;
     }
 
+    getMatchingRooms() {
+        return this.state.bookingsToday.filter((room) => {
+            if(this.normaliseIdentifier(room.displayName).includes(this.normaliseIdentifier(this.state.filter))){
+                return true;
+            }
+
+            if(room.identifier.toLowerCase().includes(this.state.filter.toLocaleLowerCase())){
+                return true;
+            }
+
+            return false;
+        });
+    }
+
     render() {
         return (
             <div className="App">
@@ -405,7 +418,7 @@ class App extends Component {
                         Jag vill inte synas här!
                     </a>
                 </header>
-                {this.state.view === 'rooms' && <Rooms bookingsToday={this.state.bookingsToday}/>}
+                {this.state.view === 'rooms' && <Rooms bookingsToday={this.getMatchingRooms()}/>}
                 {this.state.view !== 'rooms'&& <div
                     className = { 'devices-wrapper' }
                 >
