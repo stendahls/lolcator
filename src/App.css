@@ -155,6 +155,10 @@ header input {
     height: 40px;
 }
 
+.room-wrapper a {
+    color: #000;
+}
+
 .booking-wrapper {
     background-color: #fff;
     bottom: 0;
