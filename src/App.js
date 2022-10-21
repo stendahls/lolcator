@@ -37,7 +37,7 @@ const App = function App() {
     const [bookingsToday, setBookingsToday] = useState( [] );
     const [uniqueUsers, setUniqueUsers] = useState(0);
     const [onPremise, setOnPremise] = useState(true);
-    const [view, setView] = useState('peeps');
+    const [view, setView] = useState(window.location.pathname === '/rooms' ? 'rooms' : 'peeps');
     const [urlParams] = useState(new URLSearchParams( window.location.search ))
     const [allDevices, setAllDevices] = useState([]);
     const filterInput = useRef( null );
@@ -78,6 +78,7 @@ const App = function App() {
 
         setRandomPeep(Math.floor(Math.random() * Math.floor(allDevices.length)));
         setView('peeps');
+        window.history.pushState(null, null, '/');
 
         setTimeout( () => {
             coinButton.current.classList.remove('coin-clicked');
@@ -86,6 +87,7 @@ const App = function App() {
 
     const handleTitleClick = () => {
         setView('peeps');
+        window.history.pushState(null, null, '/');
         setFilter('');
         setRandomPeep(false);
     };
@@ -93,6 +95,7 @@ const App = function App() {
     const handleMushroomClick = () => {
         mushroomButton.current.classList.add('mushroom-clicked');
         setView('rooms');
+        window.history.pushState(null, null, '/rooms');
 
         setTimeout( () => {
             mushroomButton.current.classList.remove('mushroom-clicked');
