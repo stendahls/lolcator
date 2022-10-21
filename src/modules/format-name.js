@@ -4,5 +4,6 @@ module.exports = ( identifier ) => {
         .replace('goran', 'göran')
         .replace('hakan', 'håkan')
         .replace('lars-hakan', 'lars-håkan')
-        .replace('soren', 'sören');
+        .replace('soren', 'sören')
+        .replace('host/', '');
 };
