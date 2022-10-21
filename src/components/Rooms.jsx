@@ -39,6 +39,10 @@ function Rooms ({bookingsToday: rooms}) {
                             console.log(booking);
                         }
 
+                        const mailtoHref = `mailto:${booking.organizer}?subject=Angående%20din%20rumsbokning%20i%20${room.displayName}%20(${room.identifier.substring(0, 3)})%20kl%20${new Date(booking.start).toLocaleTimeString('sv-SE', {
+                            timeStyle: 'short'
+                        })}`;
+
                         return <div
                             alt = {booking.organizer}
                             className = "booking-wrapper"
@@ -49,19 +53,21 @@ function Rooms ({bookingsToday: rooms}) {
                             }}
                             title = {booking.organizer}
                         >
-                            <div>
-                                {new Date(booking.start).toLocaleTimeString('sv-SE', {
-                                    timeStyle: 'short',
-                                })}
-                            </div>
-                            <div>
-                                {'-'}
-                            </div>
-                            <div>
-                                {new Date(booking.end).toLocaleTimeString('sv-SE', {
-                                    timeStyle: 'short',
-                                })}
-                            </div>
+                            <a href={mailtoHref}>
+                                <span style={{ display: 'block'}}>
+                                    {new Date(booking.start).toLocaleTimeString('sv-SE', {
+                                        timeStyle: 'short',
+                                    })}
+                                </span>
+                                <span style={{ display: 'block'}}>
+                                    {'-'}
+                                </span>
+                                <span style={{ display: 'block'}}>
+                                    {new Date(booking.end).toLocaleTimeString('sv-SE', {
+                                        timeStyle: 'short',
+                                    })}
+                                </span>
+                            </a>
                         </div>;
                     })}
                     </div>
