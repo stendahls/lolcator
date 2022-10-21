@@ -206,8 +206,9 @@ const App = function App() {
                             identifier
                             displayName
                             bookings {
-                                start
                                 end
+                                organizer
+                                start
                             }
                         }
                     }` } ),

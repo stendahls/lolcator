@@ -40,12 +40,14 @@ function Rooms ({bookingsToday: rooms}) {
                         }
 
                         return <div
+                            alt = {booking.organizer}
                             className = "booking-wrapper"
                             key = {`${booking.roomIdentifier}-${booking.start}`}
                             style = {{
                                 left: `${Math.max(startPosition, 0)}%`,
                                 width: `${Math.min(width, 100)}%`,
                             }}
+                            title = {booking.organizer}
                         >
                             <div>
                                 {new Date(booking.start).toLocaleTimeString('sv-SE', {
