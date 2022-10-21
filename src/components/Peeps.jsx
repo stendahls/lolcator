@@ -1,19 +1,7 @@
-import md5 from 'crypto-js/md5';
 import TimeAgo from 'react-timeago';
 
 import formatName from '../modules/format-name';
-
-const LIBRAVATAR_SERVER = 'https://libravatar.stendahls.dev';
-
-const DEFAULT_IMAGES = [
-    'https://images.weserv.nl/?url=www.stendahls.se/wp-content/uploads/2020/03/PLACEHOLDER_01.jpg&w=512&h=512&t=square&a=center',
-    'https://images.weserv.nl/?url=www.stendahls.se/wp-content/uploads/2020/03/PLACEHOLDER_02.jpg&w=512&h=512&t=square&a=center',
-    'https://images.weserv.nl/?url=www.stendahls.se/wp-content/uploads/2020/03/PLACEHOLDER_03.jpg&w=512&h=512&t=square&a=center',
-];
-
-const getRandomDefaultImageURL = function getRandomDefaultImageURL(){
-    return DEFAULT_IMAGES[ Math.floor( Math.random() * DEFAULT_IMAGES.length ) ];
-};
+import libravatarImage from '../modules/libravatar-image.mjs';
 
 const Peeps = function({validDevices, urlParams}){
     return validDevices.map( ( device ) => {
@@ -28,7 +16,7 @@ const Peeps = function({validDevices, urlParams}){
             >
                 <img
                     alt = { device.identity }
-                    src = { `${ LIBRAVATAR_SERVER }/avatar/${ md5( `${ device.identity }@stendahls.se` ) }?s=512&default=${ encodeURIComponent( getRandomDefaultImageURL() ) }` }
+                    src = { libravatarImage(`${ device.identity }@stendahls.se`) }
                 />
                 { urlParams.get( 'debug' ) &&
                     <div
