@@ -2,7 +2,6 @@ const dayDuration = 8.5 * 60 * 60 * 1000;
 
 function Rooms ({bookingsToday: rooms}) {
     const startOfToday = new Date().setHours(8, 30, 0, 0);
-    // const endOfToday = new Date().setHours(17);
 
     const rightNowPosition = (new Date().getTime() - startOfToday) / dayDuration * 100;
     return (
