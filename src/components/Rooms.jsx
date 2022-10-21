@@ -74,6 +74,6 @@ function Rooms ({bookingsToday: rooms}) {
             })}
         </div>
     )
-};
+}
 
 export default Rooms;
