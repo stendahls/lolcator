@@ -53,6 +53,9 @@ function Rooms ({bookingsToday: rooms}) {
                             title = {booking.organizer}
                         >
                             <a href={mailtoHref}>
+                                <span className="tooltiptext">
+                                    {booking.organizer}
+                                </span>
                                 <span style={{ display: 'block'}}>
                                     {new Date(booking.start).toLocaleTimeString('sv-SE', {
                                         timeStyle: 'short',
