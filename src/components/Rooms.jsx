@@ -25,7 +25,9 @@ function Rooms ({bookingsToday: rooms}) {
                     return <div
                         className="workspace"
                         key = {`workspace-${room}`}
-                    />;
+                    >
+                        {room}
+                    </div>;
                 })}
             </div>
             {rooms.map(room => {
