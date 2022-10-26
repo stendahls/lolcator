@@ -2,6 +2,8 @@ const dayDuration = 8.5 * 60 * 60 * 1000;
 
 const listOfRooms = [
     '410-1',
+    '411-1',
+    '412-1',
 ];
 
 function Rooms ({bookingsToday: rooms}) {

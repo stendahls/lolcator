@@ -155,8 +155,18 @@ header input {
 
 .workspaces-wrapper {
     border: 1px solid #fff;
+    display: flex;
+    flex-grow: 1;
     height: 40px;
     width: 100%;
+}
+
+.workspace {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
 }
 
 .room-wrapper {
