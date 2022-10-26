@@ -149,6 +149,12 @@ header input {
     bottom: 0;
 }
 
+.workspaces-wrapper {
+    border: 1px solid #fff;
+    height: 40px;
+    width: 100%;
+}
+
 .room-wrapper {
     border: 1px solid #fff;
     position: relative;

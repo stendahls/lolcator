@@ -1,5 +1,9 @@
 const dayDuration = 8.5 * 60 * 60 * 1000;
 
+const listOfRooms = [
+    '410-1',
+];
+
 function Rooms ({bookingsToday: rooms}) {
     const startOfToday = new Date().setHours(8, 30, 0, 0);
 
@@ -14,7 +18,16 @@ function Rooms ({bookingsToday: rooms}) {
                     left: `${Math.min(Math.max(rightNowPosition, 0), 100)}%`,
                 }}
             />
-
+            <div
+                className = "workspaces-wrapper"
+            >
+                {listOfRooms.map((room) => {
+                    return <div
+                        className="workspace"
+                        key = {`workspace-${room}`}
+                    />;
+                })}
+            </div>
             {rooms.map(room => {
                 return <div
                     key = {room.identifier}
