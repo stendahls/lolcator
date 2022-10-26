@@ -141,6 +141,10 @@ header input {
     position: relative;
 }
 
+.rooms > div:last-child {
+    margin-bottom: 80px;
+}
+
 .right-now-line {
     border-left: 1px solid #fff;
     border-right: 1px solid #fff;
@@ -162,6 +166,7 @@ header input {
 }
 
 .room-wrapper a {
+    position: relative;
     color: #000;
 }
 
@@ -173,6 +178,36 @@ header input {
     position: absolute;
     text-align: center;
     top: 0;
+}
+
+.room-wrapper a>.tooltiptext {
+    visibility: hidden;
+    background-color: #fff;
+    color: #000;
+    text-align: center;
+    padding: 8px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    width: auto;
+    bottom: 44px;
+    font-size: 1.3em;
+    transform: translateX(-50%);
+}
+
+.room-wrapper a:hover>.tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+}
+
+.room-wrapper a:hover>.tooltiptext {
+    visibility: visible;
 }
 
 @media ( max-width: 940px ) {
