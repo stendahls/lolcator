@@ -160,8 +160,9 @@ header input {
 }
 
 .room-wrapper a {
-    position: relative;
     color: #000;
+    text-decoration: none;
+    position: relative;
 }
 
 .booking-wrapper {
