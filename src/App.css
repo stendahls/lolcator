@@ -185,7 +185,7 @@ header input {
     position: absolute;
     z-index: 1;
     width: auto;
-    bottom: 44px;
+    bottom: 8px;
     font-size: 1.3em;
     transform: translateX(-50%);
 }
