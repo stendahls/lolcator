@@ -188,6 +188,7 @@ header input {
     font-size: 1.3em;
     transform: translateX(-50%);
     top: -40px;
+    word-break: keep-all;
 }
 
 .room-wrapper a:hover>.tooltiptext::after {
