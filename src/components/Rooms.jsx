@@ -60,6 +60,8 @@ function Rooms ({bookingsToday: rooms}) {
 
                         if(startPosition > 100){
                             console.log(booking);
+
+                            return null;
                         }
 
                         const mailtoHref = `mailto:${booking.organizer}?subject=Angående%20din%20rumsbokning%20i%20${room.displayName}%20(${room.identifier.substring(0, 3)})%20kl%20${new Date(booking.start).toLocaleTimeString('sv-SE', {
