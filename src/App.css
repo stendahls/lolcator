@@ -185,9 +185,10 @@ header input {
     position: absolute;
     z-index: 1;
     width: auto;
-    bottom: 44px;
     font-size: 1.3em;
     transform: translateX(-50%);
+    top: -40px;
+    word-break: keep-all;
 }
 
 .room-wrapper a:hover>.tooltiptext::after {
