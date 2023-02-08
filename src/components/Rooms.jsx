@@ -30,7 +30,11 @@ function Rooms ({bookingsToday: rooms}) {
                         className = "room-wrapper"
                     >
                     {room.bookings.map(booking => {
-
+                        if(new Date(booking.end) - new Date(booking.start) === 86400000 && booking.start.endsWith('Z') && booking.end.endsWith('Z')) {
+                            // All-day events are stored as YYYY-MM-DDT00:00:00Z (UTC) which becomes 1 hour wrong during winter (normal) time. Getting rid of the Z fixes this!
+                            booking.end = booking.end.slice(0, -1);
+                            booking.start = booking.start.slice(0, -1);
+                        }
                         const startPosition = (new Date(booking.start).getTime() - startOfToday) / dayDuration * 100;
                         const width = (new Date(booking.end).getTime() - new Date(booking.start).getTime()) / dayDuration * 100;
 
